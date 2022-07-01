@@ -1,2 +1,16 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+  import { getWeatherFrom } from '../services/weather'
+  const weatherPromise = getWeatherFrom()
+</script>
+
+{#await weatherPromise then weather}
+    <h1>{weather.conditionText}</h1>
+{/await}
+
+<h1>Svelte Weather</h1>
+
+<style>
+    h1 {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+</style>
